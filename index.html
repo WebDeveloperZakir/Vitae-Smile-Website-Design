@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VitaeSmile - Dazzling Smiles, Naturally</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* --- Global Styles & Variables --- */
+        :root {
+            --vitae-primary: #00A99D; /* Primary brand color from www.vitaesmile.com */
+            --vitae-secondary: #FFB300; /* Secondary accent color from www.vitaesmile.com */
+            --vitae-background: #F4F8F8; /* Light background color from www.vitaesmile.com */
+            --dark-text: #333333;
+            --light-text: #ffffff;
+            --light-bg-variant: #F8F8F8; /* Used for product/benefit card backgrounds, slightly different from main background for contrast */
+            --white: #ffffff; /* Still useful for elements that need pure white */
+
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'Open Sans', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-body);
+            margin: 0;
+            padding: 0;
+            background-color: var(--vitae-background); /* Updated background color */
+            color: var(--dark-text);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-heading);
+            color: var(--vitae-primary); /* Updated to primary color */
+            line-height: 1.2;
+        }
+
+        h1 { font-size: 3.5rem; }
+        h2 { font-size: 2.5rem; }
+        h3 { font-size: 1.8rem; }
+
+        a {
+            text-decoration: none;
+            color: var(--vitae-primary); /* Updated to primary color */
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--vitae-secondary); /* Updated to secondary color */
+        }
+
+        /* --- Buttons --- */
+        .btn {
+            display: inline-block;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--vitae-primary); /* Updated to primary color */
+            color: var(--light-text);
+            border: 2px solid var(--vitae-primary); /* Updated to primary color */
+        }
+
+        .btn-primary:hover {
+            background-color: #008f87; /* Slightly darker primary */
+            border-color: #008f87;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: var(--vitae-secondary); /* Updated to secondary color */
+            color: var(--dark-text);
+            border: 2px solid var(--vitae-secondary); /* Updated to secondary color */
+        }
+
+        .btn-secondary:hover {
+            background-color: #e69d00; /* Slightly darker secondary */
+            border-color: #e69d00;
+            transform: translateY(-2px);
+        }
+
+        /* --- Header & Navigation --- */
+        .header {
+            background-color: var(--white);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--vitae-primary); /* Updated to primary color */
+            text-decoration: none;
+            line-height: 1;
+        }
+
+        .logo strong {
+            color: var(--vitae-secondary); /* Updated to secondary color */
+            font-weight: 700;
+        }
+
+        .main-nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 30px;
+        }
+
+        .main-nav a {
+            color: var(--dark-text);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .main-nav a:hover {
+            color: var(--vitae-primary); /* Updated to primary color */
+        }
+
+        .nav-cart-icon {
+            font-size: 1.5rem;
+            margin-left: 10px; /* Space from other nav items */
+            position: relative;
+        }
+
+        .nav-cart-icon .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--vitae-secondary);
+            color: var(--dark-text);
+            font-size: 0.75rem;
+            font-weight: 700;
+            border-radius: 50%;
+            padding: 2px 6px;
+            min-width: 18px;
+            text-align: center;
+            line-height: 1;
+        }
+
+
+        /* --- Hero Section --- */
+        .hero {
+            background: linear-gradient(135deg, var(--vitae-primary) 0%, #00C6B8 100%); /* Updated gradient start */
+            color: var(--light-text);
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            color: var(--vitae-secondary); /* Updated to secondary color */
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-image {
+            position: absolute;
+            bottom: 0;
+            right: 5%;
+            width: 400px; /* Adjust size as needed */
+            height: auto;
+            z-index: 1;
+            opacity: 0.8;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* --- Featured Products Section --- */
+        .featured-products {
+            padding: 80px 0;
+            background-color: var(--light-bg-variant); /* Using light background variant */
+            text-align: center;
+        }
+
+        .featured-products h2 {
+            margin-bottom: 50px;
+            font-size: 2.8rem;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            padding: 25px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: var(--dark-text);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .product-card img {
+            max-width: 100%;
+            height: 200px; /* Fixed height for consistency */
+            object-fit: contain; /* Ensures entire product is visible */
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        .product-card h3 {
+            font-size: 1.5rem;
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: var(--vitae-primary); /* Updated to primary color */
+        }
+
+        .product-card .price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--vitae-secondary); /* Updated to secondary color */
+            margin-bottom: 15px;
+        }
+
+        .product-card .description {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 20px;
+            flex-grow: 1; /* Allows description to take up available space */
+            height: 2.8em; /* Approximate height for 2 lines of text (1.4em line-height * 2) */
+            overflow: hidden; /* Hide overflow if text exceeds 2 lines */
+            display: -webkit-box;
+            -webkit-line-clamp: 2; /* Limit to 2 lines */
+            -webkit-box-orient: vertical;
+            text-overflow: ellipsis; /* Add ellipsis for overflow */
+        }
+
+        /* --- Benefits Section --- */
+        .benefits-section {
+            padding: 80px 0;
+            background-color: var(--vitae-background); /* Updated background color */
+            text-align: center;
+        }
+
+        .benefits-section h2 {
+            margin-bottom: 50px;
+            font-size: 2.8rem;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .benefit-item {
+            padding: 25px;
+            border-radius: 10px;
+            background-color: var(--light-bg-variant); /* Using light background variant */
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .benefit-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+        }
+
+        .benefit-item i {
+            font-size: 3rem;
+            color: var(--vitae-secondary); /* Updated to secondary color */
+            margin-bottom: 20px;
+        }
+
+        .benefit-item h3 {
+            font-size: 1.5rem;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .benefit-item p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        /* --- CTA Section --- */
+        .cta-section {
+            background-color: var(--vitae-primary); /* Updated to primary color */
+            color: var(--light-text);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            color: var(--vitae-secondary); /* Updated to secondary color */
+            font-size: 3rem;
+            margin-bottom: 30px;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+
+        /* --- Contact Page Section --- */
+        .contact-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #EBF9F8 0%, var(--vitae-background) 100%); /* Lighter gradient background */
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            color: var(--vitae-primary);
+            margin-bottom: 60px;
+            font-size: 3rem;
+        }
+
+        .contact-content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            align-items: start; /* Align items to the start of their grid area */
+        }
+
+        .contact-info-block,
+        .contact-form-block,
+        .contact-address-block {
+            background-color: var(--white);
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1); /* More prominent shadow */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .contact-info-block:hover,
+        .contact-form-block:hover,
+        .contact-address-block:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+        }
+
+        .contact-info-block h4,
+        .contact-form-block h4,
+        .contact-address-block h4 {
+            color: var(--vitae-primary);
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            margin-top: 0;
+            margin-bottom: 25px;
+        }
+
+        .contact-info-block p,
+        .contact-address-block p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: var(--dark-text);
+        }
+
+        .contact-info-block i,
+        .contact-address-block i {
+            color: var(--vitae-secondary);
+            margin-right: 10px;
+            font-size: 1.3rem;
+        }
+
+        .contact-info-block a,
+        .contact-address-block a {
+            color: var(--vitae-primary);
+            font-weight: 600;
+        }
+
+        /* Updated contact form styling for compression */
+        .contact-form .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Two columns */
+            gap: 20px; /* Space between columns */
+            margin-bottom: 20px;
+        }
+
+        .contact-form .form-group {
+            margin-bottom: 0; /* Remove bottom margin if part of a row */
+            text-align: left; /* Align labels and inputs to the left */
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-text);
+        }
+
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form textarea {
+            width: calc(100% - 24px); /* Account for padding */
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .contact-form input[type="text"]:focus,
+        .contact-form input[type="email"]:focus,
+        .contact-form textarea:focus {
+            border-color: var(--vitae-secondary);
+            box-shadow: 0 0 0 3px rgba(255, 179, 0, 0.2); /* Soft shadow on focus */
+            outline: none;
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+            width: calc(100% - 24px); /* Ensure full width within its group */
+        }
+
+        .contact-form .btn-primary {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+
+        .map-placeholder {
+            border: 2px solid var(--vitae-primary);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .map-placeholder img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+
+        /* --- Footer --- */
+        .footer {
+            background-color: var(--dark-text);
+            color: var(--light-text);
+            padding: 40px 0;
+            font-size: 0.9rem;
+        }
+
+        .footer-content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: left; /* Align text within columns */
+        }
+
+        .footer-logo-col {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .footer .logo { /* Override general logo styling for footer */
+            font-size: 2.5rem; /* Larger footer logo */
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .footer-section h4 {
+            color: var(--vitae-primary); /* Use primary for footer headings */
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links a, .footer-contact-info p, .footer-contact-info a {
+            color: var(--light-text);
+            text-decoration: none;
+            line-height: 2; /* Spacing for readability */
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover, .footer-contact-info a:hover {
+            color: var(--vitae-secondary);
+        }
+
+        .social-icons {
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            color: var(--light-text);
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--vitae-secondary);
+        }
+
+        .footer-copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* --- Mobile Responsiveness --- */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.8rem; }
+            h2 { font-size: 2rem; }
+            h3 { font-size: 1.5rem; }
+
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+
+            .main-nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+
+            .hero {
+                padding: 80px 0 100px; /* Adjust padding for mobile */
+                text-align: center;
+                min-height: 50vh;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .hero-image {
+                position: static; /* Stack on top/bottom on mobile */
+                width: 70%; /* Adjust size */
+                margin-top: 30px;
+                order: 1; /* Puts image below text in flex order */
+                animation: none; /* Disable animation for performance on small devices */
+            }
+
+            .hero-content {
+                order: 2; /* Puts text above image */
+            }
+
+            .product-grid, .benefits-grid {
+                grid-template-columns: 1fr; /* Single column layout */
+            }
+
+            .product-card, .benefit-item {
+                padding: 20px;
+            }
+
+            .cta-section h2 {
+                font-size: 2.2rem;
+            }
+
+            .cta-section p {
+                font-size: 1rem;
+            }
+
+            .footer-content-grid {
+                grid-template-columns: 1fr; /* Stack columns on mobile */
+                text-align: center; /* Center align footer content on mobile */
+            }
+
+            .footer-logo-col, .footer-section {
+                margin-bottom: 20px; /* Add spacing between stacked sections */
+            }
+
+            .contact-content-grid {
+                grid-template-columns: 1fr; /* Stack contact blocks on mobile */
+            }
+
+            /* Adjust form for mobile */
+            .contact-form .form-row {
+                grid-template-columns: 1fr; /* Single column on mobile */
+                gap: 0; /* Remove gap */
+            }
+            .contact-form .form-group {
+                margin-bottom: 20px; /* Restore margin between stacked groups */
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 2.2rem; }
+            h2 { font-size: 1.8rem; }
+            h3 { font-size: 1.3rem; }
+
+            .btn {
+                padding: 12px 20px;
+                font-size: 0.9rem;
+            }
+
+            .hero {
+                padding: 60px 0 80px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="header">
+        <div class="container header-content">
+            <a href="#" class="logo">Vitae<strong>Smile</strong></a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#products">Home</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#benefits">Benefits</a></li>
+                                        <li><a href="#">Shop</a></li>
+                    <li style="padding-right: 200px;"><a href="#contact-page">Contact</a></li>
+                    
+                    <li><a href="#" class="nav-cart-icon" aria-label="Shopping Cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span> <!-- Dynamic cart count -->
+                    </a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section style="background-image: url(H3.jpg);background-size: cover;" class="hero">
+        <div class="container hero-content">
+            <h1>Unlock Your Brightest Smile</h1>
+            <p>Experience professional teeth whitening at home with VitaeSmile's innovative and natural solutions. Dazzle with confidence!</p>
+            <a href="#products" class="btn btn-secondary">Explore Products</a>
+            <a href="#cta" class="btn btn-primary">Get Your Smile Today</a>
+        </div>
+        <!-- Actual product image for hero section (e.g., VitaeSmile Pro Kit) -->
+        <img src="https://vitaesmile.com/wp-content/uploads/2025/08/IMG_8334-web-533x800.png?v=1696530222&width=1500" alt="VitaeSmile Pro Kit" class="hero-image">
+    </section>
+
+    <!-- Featured Products Section -->
+    <section id="products" class="featured-products">
+        <div class="container">
+            <h2>Our Bestselling Smile Solutions</h2>
+            <div class="product-grid">
+                <!-- Product 1: VitaeSmile Strips -->
+                <a href="#" class="product-card">
+                    <img src="https://vitaesmile.com/wp-content/uploads/2021/08/Strips-1-800x800.png?v=1696530198&width=1500" alt="VitaeSmile Pro Kit">
+                    <h3>VitaeSmile Strips</h3>
+                    <p class="description">Our most advanced kit for professional-grade whitening, delivering stunning results quickly.</p>
+                    <p class="price">25€</p>
+                    <span class="btn btn-primary">Learn More</span>
+                </a>
+
+                 <!-- Product 2: VitaeSmile Paste -->
+                <a href="#" class="product-card">
+                    <img src="https://vitaesmile.com/wp-content/uploads/2021/08/Toothpaste-Setup-front-1-800x800.png?v=1696530198&width=1500" alt="VitaeSmile Pro Kit">
+                    <h3>VitaeSmile Paste</h3>
+                    <p class="description">Our most advanced kit for professional-grade whitening, delivering stunning results quickly.</p>
+                    <p class="price">13€</p>
+                    <span class="btn btn-primary">Learn More</span>
+                </a>
+                <!-- Product 3: VitaeSmile Electric Brush -->
+                <a href="#" class="product-card">
+                    <img src="https://vitaesmile.com/wp-content/uploads/2021/08/VitaeSmile-Toothbrush-1-1.png?v=1696530198&width=1500" alt="VitaeSmile Pro Kit">
+                    <h3>VitaeSmile Electric Brush</h3>
+                    <p class="description">Our most advanced kit for professional-grade whitening, delivering stunning results quickly.</p>
+                    <p class="price">46€</p>
+                    <span class="btn btn-primary">Learn More</span>
+                </a>
+
+                <!-- Product 2: VitaeSmile Whitening Strips -->
+                <a href="#" class="product-card">
+                    <img src="https://www.smileproworldwide.com/cdn/shop/files/smilepro-ultimate-whitening-set-2.jpg?v=1747603274&width=1000?v=1696530180&width=1500" alt="VitaeSmile Whitening Strips">
+                    <h3>VitaeSmile Whitening Strips</h3>
+                    <p class="description">Convenient and effective for brighter smiles on the go, with noticeable results fast.</p>
+                    <p class="price">60€</p>
+                    <span class="btn btn-primary">Learn More</span>
+                </a>
+
+                <!-- Product 3: VitaeSmile Whitening Pen -->
+                <a href="#" class="product-card">
+                    <img src="https://www.gosupps.com/media/catalog/product/7/1/71KwajKgj7L.jpg?v=1696530185&width=1500" alt="VitaeSmile Whitening Pen">
+                    <h3>VitaeSmile Whitening Pen</h3>
+                    <p class="description">Achieve precision whitening and touch-ups anytime, anywhere for a radiant smile.</p>
+                    <p class="price">40€</p>
+                    <span class="btn btn-primary">Learn More</span>
+                </a>
+
+                <!-- Product 4: VitaeSmile Charcoal Toothpaste (Example) -->
+                <a href="#" class="product-card">
+                    <img src="https://www.skinplusbd.com/public/uploads/all/1RE1peN13upEx305ZRdWIJofLqorPg1OWOEKeach.webp?v=1696530192&width=1500" alt="VitaeSmile Activated Charcoal Toothpaste">
+                    <h3>VitaeSmile Activated Charcoal Toothpaste</h3>
+                    <p class="description">Maintain your bright smile daily with our natural cleansing formula for freshness.</p>
+                    <p class="price">30€</p>
+                    <span class="btn btn-primary">Learn More</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="benefits-section">
+        <div class="container">
+            <h2>Why Choose VitaeSmile?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <i class="fas fa-magic"></i>
+                    <h3>Dazzling Results</h3>
+                    <p>Achieve a noticeably whiter smile in days, not weeks. Our powerful formulas deliver stunning transformations.</p>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-home"></i>
+                    <h3>Convenient Home Use</h3>
+                    <p>Professional whitening from the comfort of your home. No dental visits required, just simple, daily routines.</p>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-leaf"></i>
+                    <h3>Natural & Safe</h3>
+                    <p>Formulated with safe, high-quality ingredients designed to be gentle on your enamel and gums.</p>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-smile-beam"></i>
+                    <h3>Boost Confidence</h3>
+                    <p>A brighter smile enhances your confidence and leaves a lasting impression. Radiate positivity every day.</p>
+                動態表情</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section id="cta" class="cta-section">
+        <div class="container">
+            <h2>Ready for Your Best Smile?</h2>
+            <p>Join thousands of happy customers who trust VitaeSmile for a brighter, more confident you. Shop now and start your journey!</p>
+            <a href="#products" class="btn btn-secondary">Shop All Products</a>
+        </div>
+    </section>
+
+    <!-- Contact Page Section (Conceptual, as a full page would be separate) -->
+    <section id="contact-page" class="contact-section">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <div class="contact-content-grid">
+                <div class="contact-info-block">
+                    <h4>Customer Support</h4>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:info@vitaesmile.com">info@vitaesmile.com</a> <br> <i class="fas fa-phone"></i> <a href="tel:+1234567890">+971 50 371 0350</a></p>
+                    <p>Available: Mon-Fri <br>9 AM - 5 PM EST</p>
+                </div>
+                <div class="contact-form-block">
+                    <h4>Send Us a Message</h4>
+                    <form class="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="contactName">Name</label>
+                                <input type="text" id="contactName" placeholder="Your Name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactEmail">Email</label>
+                                <input type="email" id="contactEmail" placeholder="Your Email" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactSubject">Subject</label>
+                            <input type="text" id="contactSubject" placeholder="Message Subject">
+                        </div>
+                        <div class="form-group">
+                            <label for="contactMessage">Message</label>
+                            <textarea id="contactMessage" rows="5" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+                <div class="contact-address-block">
+                    <h4>Our Location</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> VitaeSmile HQ, 123 Bright Avenue<br>Smile City, ST 12345, Denmark</p>
+                    <div class="map-placeholder">
+                        <!-- Placeholder for Google Map Embed -->
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d35996.462803674636!2d12.52738373314173!3d55.675444423308456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1svitaesmile%20hq%20123%20bright%20avenue%20smile%20city%20st%2012345%20denmark!5e0!3m2!1sen!2sbd!4v1755844716859!5m2!1sen!2sbd" width="300" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content-grid">
+            <div class="footer-logo-col">
+                <a href="#" class="logo">Vitae<strong>Smile</strong></a>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#benefits">Benefits</a></li>
+                    <li><a href="#cta">Shop Now</a></li>
+                    <li><a href="#contact-page">Contact Us</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section footer-contact-info">
+                <h4>Contact Info</h4>
+                <p><i class="fas fa-map-marker-alt"></i> VitaeSmile HQ<br>123 Bright Avenue<br>Smile City, ST 12345<br>Denmark</p>
+                <p><i class="fas fa-envelope"></i> Email: <a href="mailto:info@vitaesmile.com">info@vitaesmile.com</a></p>
+                <p><i class="fas fa-phone"></i> Phone: <a href="tel:+1234567890">+971 50 371 0350</a></p>
+            </div>
+        </div>
+        <div class="container footer-copyright">
+            <p>&copy; 2025 VitaeSmile. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
